@@ -21,15 +21,6 @@
     <field name="CANDLEINTERVAL_LIST">300</field>
     <field name="TIME_MACHINE_ENABLED">FALSE</field>
     <field name="RESTARTONERROR">TRUE</field>
-    <statement name="INITIALIZATION">
-      <block type="text_print" id="b}hBvA{{cQaqdMl0}hr0">
-        <value name="TEXT">
-          <shadow type="text" id="SI-aAXE#D/![f.mVmTdt">
-            <field name="TEXT">Binary Bot v1.0.2</field>
-          </shadow>
-        </value>
-      </block>
-    </statement>
     <statement name="SUBMARKET">
       <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
         <field name="DURATIONTYPE_LIST">m</field>
@@ -136,12 +127,17 @@
       <block type="variables_set" id="cT;^]-vN)i^a|O)?3*SE">
         <field name="VAR" id="jMwZCRr,$XBQV5iO1J6P" variabletype="">LastCloseValue</field>
         <value name="VALUE">
-          <block type="get_ohlc" id="3wfqvkmog.Uf/h!#,A[k">
-            <field name="CANDLEINTERVAL_LIST">default</field>
-            <value name="CANDLEINDEX">
-              <shadow type="math_number" id="Lx=4ZOtYSI@;KNx@+#dw">
-                <field name="NUM">1</field>
-              </shadow>
+          <block type="read_ohlc_obj" id="u[Kbx!wInK`R[._w@dF3">
+            <field name="OHLCFIELD_LIST">close</field>
+            <value name="OHLCOBJ">
+              <block type="get_ohlc" id="3wfqvkmog.Uf/h!#,A[k">
+                <field name="CANDLEINTERVAL_LIST">default</field>
+                <value name="CANDLEINDEX">
+                  <shadow type="math_number" id="Lx=4ZOtYSI@;KNx@+#dw">
+                    <field name="NUM">1</field>
+                  </shadow>
+                </value>
+              </block>
             </value>
           </block>
         </value>
@@ -226,7 +222,7 @@
                     <mutation else="1"></mutation>
                     <value name="IF0">
                       <block type="logic_compare" id="qfI/2aqvnm.*T*?t8d^6">
-                        <field name="OP">LTE</field>
+                        <field name="OP">GTE</field>
                         <value name="A">
                           <block type="math_number" id="La85=:[5fIQj-cPvW{xP">
                             <field name="NUM">25</field>
@@ -264,7 +260,7 @@
                         <mutation else="1"></mutation>
                         <value name="IF0">
                           <block type="logic_compare" id="d^]wmInVeS@225/Q`(?0">
-                            <field name="OP">GTE</field>
+                            <field name="OP">LTE</field>
                             <value name="A">
                               <block type="math_number" id="JgJ*a#Lx`$J4?s{)H!x%">
                                 <field name="NUM">75</field>
@@ -413,27 +409,6 @@
             </next>
           </block>
         </next>
-      </block>
-    </statement>
-  </block>
-  <block type="during_purchase" id="(4;NieXd}j|Bn!c-YiC|" x="0" y="2020">
-    <statement name="DURING_PURCHASE_STACK">
-      <block type="controls_if" id="8?eYKAW%VczmRXQ-ou3r">
-        <value name="IF0">
-          <block type="check_sell" id="M=:_KpEeRAJY_}XTU^8~"></block>
-        </value>
-        <statement name="DO0">
-          <block type="timeout" id="-oTX=52d{`en,Fe{O5w`">
-            <statement name="TIMEOUTSTACK">
-              <block type="sell_at_market" id="aQ!9{SBU@S=pN9Qyy7ax"></block>
-            </statement>
-            <value name="SECONDS">
-              <shadow type="math_number" id="+(E;/3l}U8=Wx`z|oZ+7">
-                <field name="NUM">310</field>
-              </shadow>
-            </value>
-          </block>
-        </statement>
       </block>
     </statement>
   </block>
