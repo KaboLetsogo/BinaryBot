@@ -1,10 +1,12 @@
 ﻿<xml xmlns="http://www.w3.org/1999/xhtml" collection="false">
   <variables>
-    <variable type="" id="JXWLk2UX*MlGBH`vFrm}">UpperBolliValue</variable>
     <variable type="" id="jMwZCRr,$XBQV5iO1J6P">LastCloseValue</variable>
+    <variable type="" id="JXWLk2UX*MlGBH`vFrm}">UpperBolliValue</variable>
     <variable type="" id="Of_1X*2t*nJA]HyX9F~~">LowerBolliValue</variable>
-    <variable type="" id="l[={cGha+uYjY8#j~9A6">RSIvalue</variable>
+    <variable type="" id="74=@P|,%HjvcH`VZ-wec">IndicatorPeriod</variable>
     <variable type="" id="7uAlac_(jL$N;!XpBqFU">BolliBuySignal</variable>
+    <variable type="" id="Ov|Bm*J:Dh37e+5WC6#_">StdDevMultiplier</variable>
+    <variable type="" id="l[={cGha+uYjY8#j~9A6">RSIvalue</variable>
     <variable type="" id="4$SCo,VP3.[h7klfWM!5">BolliSellSignal</variable>
     <variable type="" id="F1x[(@Wv(.mP2]=z[2YG">RSIbuySignal</variable>
     <variable type="" id="67a};@s[Nj@U#UgDS^D6">RSIsellSignal</variable>
@@ -18,9 +20,38 @@
     <field name="TRADETYPECAT_LIST">callput</field>
     <field name="TRADETYPE_LIST">risefall</field>
     <field name="TYPE_LIST">both</field>
-    <field name="CANDLEINTERVAL_LIST">300</field>
+    <field name="CANDLEINTERVAL_LIST">60</field>
     <field name="TIME_MACHINE_ENABLED">FALSE</field>
     <field name="RESTARTONERROR">TRUE</field>
+    <statement name="INITIALIZATION">
+      <block type="text_print" id="L{SIyb%so]!{tL1-M|1)">
+        <value name="TEXT">
+          <shadow type="text" id="VTG4ytgntC93xDyN[zmY">
+            <field name="TEXT">BinaryBot BB + RSI</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="variables_set" id="LzQS-jA7+*qq@0;2jnlJ">
+            <field name="VAR" id="74=@P|,%HjvcH`VZ-wec" variabletype="">IndicatorPeriod</field>
+            <value name="VALUE">
+              <block type="math_number" id="wTEF*#JwJ:?PZY3Og[pK">
+                <field name="NUM">20</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="J4.#+WF7iD=iR?I~6Lu[">
+                <field name="VAR" id="Ov|Bm*J:Dh37e+5WC6#_" variabletype="">StdDevMultiplier</field>
+                <value name="VALUE">
+                  <block type="math_number" id="k-(Ykz=zS#M-]P^Lzfzq">
+                    <field name="NUM">2</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
     <statement name="SUBMARKET">
       <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
         <field name="DURATIONTYPE_LIST">m</field>
@@ -55,16 +86,25 @@
               <shadow type="math_number" id="9$ve{THoU0AitLK_bu(b">
                 <field name="NUM">10</field>
               </shadow>
+              <block type="variables_get" id="D5ld{}a2]Y`cUsc3MY=y">
+                <field name="VAR" id="74=@P|,%HjvcH`VZ-wec" variabletype="">IndicatorPeriod</field>
+              </block>
             </value>
             <value name="UPMULTIPLIER">
               <shadow type="math_number" id="kg(FkqE;xJG+ra{RN:hv">
                 <field name="NUM">5</field>
               </shadow>
+              <block type="variables_get" id="b!)Xr}oqsI+7{634UzXw">
+                <field name="VAR" id="Ov|Bm*J:Dh37e+5WC6#_" variabletype="">StdDevMultiplier</field>
+              </block>
             </value>
             <value name="DOWNMULTIPLIER">
               <shadow type="math_number" id="2PNC7NUgSQqmSaIuI:{Z">
                 <field name="NUM">5</field>
               </shadow>
+              <block type="variables_get" id="BAi~Wsn=ehKj2QK,k+SU">
+                <field name="VAR" id="Ov|Bm*J:Dh37e+5WC6#_" variabletype="">StdDevMultiplier</field>
+              </block>
             </value>
           </block>
         </value>
@@ -84,16 +124,25 @@
                   <shadow type="math_number" id="KycrWALGxx[bNdANW~O:">
                     <field name="NUM">10</field>
                   </shadow>
+                  <block type="variables_get" id="tyr;|YDUtHQATMWwyWbg">
+                    <field name="VAR" id="74=@P|,%HjvcH`VZ-wec" variabletype="">IndicatorPeriod</field>
+                  </block>
                 </value>
                 <value name="UPMULTIPLIER">
                   <shadow type="math_number" id="VyHEwTGPSN%?6UnXFF2L">
                     <field name="NUM">5</field>
                   </shadow>
+                  <block type="variables_get" id="wf;PmhLkjeJNa%_waJTs">
+                    <field name="VAR" id="Ov|Bm*J:Dh37e+5WC6#_" variabletype="">StdDevMultiplier</field>
+                  </block>
                 </value>
                 <value name="DOWNMULTIPLIER">
                   <shadow type="math_number" id="KiO(,@PgsOf%Ic3_0*?+">
                     <field name="NUM">5</field>
                   </shadow>
+                  <block type="variables_get" id="Sw#Glu*WUEm):w:q?cV^">
+                    <field name="VAR" id="Ov|Bm*J:Dh37e+5WC6#_" variabletype="">StdDevMultiplier</field>
+                  </block>
                 </value>
               </block>
             </value>
@@ -112,6 +161,9 @@
                       <shadow type="math_number" id="+qvcE]4U,gSn}+yG#97{">
                         <field name="NUM">10</field>
                       </shadow>
+                      <block type="variables_get" id="wLH#Bg7(,bj54D_0mXKw">
+                        <field name="VAR" id="74=@P|,%HjvcH`VZ-wec" variabletype="">IndicatorPeriod</field>
+                      </block>
                     </value>
                   </block>
                 </value>
